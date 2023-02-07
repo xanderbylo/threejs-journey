@@ -25,6 +25,11 @@ mesh.position.set(0.7, -0.6, 1)
 // mesh.scale.z = 0.5
 mesh.scale.set(2, 0.5, 0.5)
 
+// Rotation
+mesh.rotation.reorder('YXZ')
+mesh.rotation.x = Math.PI * 0.25
+mesh.rotation.y = Math.PI * 0.25
+
 // Axes Helper
 const axesHelper = new THREE.AxesHelper()
 scene.add(axesHelper)
@@ -34,7 +39,6 @@ const sizes = {
     width: 800,
     height: 600
 }
-
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
