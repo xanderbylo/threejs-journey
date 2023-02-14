@@ -2,6 +2,21 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 /**
+ * Textures
+ */
+const textureLoader = new THREE.TextureLoader()
+
+const doorAlphaTexture = textureLoader.load('/textures/door/alpha.jpg')
+const doorAmbientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg')
+const doorColorTexture = textureLoader.load('/textures/door/color.jpg')
+const doorHeightTexture = textureLoader.load('/textures/door/height.jpg')
+const doorMetalnessTexture = textureLoader.load('/textures/door/metalness.jpg')
+const doorNormalTexture = textureLoader.load('/textures/door/normal.jpg')
+const doorRoughnessTexture = textureLoader.load('/textures/door/roughness.jpg')
+const gradientTexture = textureLoader.load('/textures/gradients/3.jpg')
+const matcapsTexture = textureLoader.load('/textures/matcaps/8.png')
+
+/**
  * Base
  */
 // Canvas
