@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js'
 
 /**
  * Base
@@ -43,6 +44,19 @@ gui.add(rectAreaLight, 'intensity').min(0).max(1).step(0.01)
 gui.add(spotLight, 'intensity').min(0).max(1).step(0.01)
 
 scene.add(ambientLight, directionalLight, hemisphereLight, pointLight, rectAreaLight, spotLight, spotLight.target)
+
+// Helpers
+const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight, 0.2)
+
+const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2)
+
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2)
+
+const spotLightHelper = new THREE.SpotLightHelper(spotLight)
+
+const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight)
+
+scene.add(hemisphereLightHelper, directionalLightHelper, pointLightHelper, spotLightHelper, rectAreaLightHelper)
 
 /**
  * Objects
