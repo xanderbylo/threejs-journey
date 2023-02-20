@@ -3,6 +3,12 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
 
 /**
+ * Textures
+ */
+const textureLoader = new THREE.TextureLoader()
+const bakedShadow = textureLoader.load('/textures/bakedShadow.jpg')
+
+/**
  * Base
  */
 // Debug
@@ -31,8 +37,7 @@ gui.add(directionalLight.position, 'y').min(- 5).max(5).step(0.001)
 gui.add(directionalLight.position, 'z').min(- 5).max(5).step(0.001)
 scene.add(directionalLight)
 
-directionalLight.castShadow = true
-
+// directionalLight.castShadow = true
 directionalLight.shadow.mapSize.x = 1024
 directionalLight.shadow.mapSize.y = 1024
 directionalLight.shadow.camera.top = 2
@@ -49,7 +54,7 @@ directionalLight.shadow.camera.far = 6
 // Spot light
 const spotLight = new THREE.SpotLight(0xffffff, 0.3, 10, Math.PI * 0.3)
 
-spotLight.castShadow = true
+// spotLight.castShadow = true
 spotLight.shadow.mapSize.x = 1024
 spotLight.shadow.mapSize.y = 1024
 spotLight.shadow.camera.fov = 30
@@ -66,7 +71,7 @@ scene.add(spotLight.target)
 // Point light
 const pointLight = new THREE.PointLight(0xffffff, 0.3)
 
-pointLight.castShadow = true
+// pointLight.castShadow = true
 pointLight.shadow.mapSize.x = 1024
 pointLight.shadow.mapSize.y = 1024
 pointLight.shadow.camera.near = 0.1
@@ -97,7 +102,9 @@ sphere.castShadow = true
 
 const plane = new THREE.Mesh(
     new THREE.PlaneGeometry(5, 5),
-    material
+    new THREE.MeshBasicMaterial({
+        map: bakedShadow
+    })
 )
 plane.rotation.x = - Math.PI * 0.5
 plane.position.y = - 0.5
@@ -151,8 +158,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-renderer.shadowMap.enabled = true
-
+// renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
 /**
